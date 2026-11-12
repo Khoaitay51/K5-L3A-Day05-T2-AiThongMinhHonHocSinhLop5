@@ -2,8 +2,16 @@
 [Danh sách thành viên và việc mỗi người làm — copy bảng từ README]
 
 ## §1. Lát cắt & phạm vi
-- Lát cắt (chép từ track).
-- 3 việc tính năng KHÔNG làm, mỗi việc một câu vì sao.
+- Lát cắt:
+| Sản phẩm | Một người dùng | Một việc | Một quyết định của AI | Một kết quả |
+|---|---|---|---|---|
+| Trợ lý học bài của trang khoá học | học viên | hỏi bài lúc tối muộn, khi không còn ai để hỏi | giảng kèm trích tài liệu, hỏi lại cho rõ, gợi ý từng bước, hay nói thẳng "tài liệu không có, hỏi giảng viên" | học viên hiểu đúng bài mình đang học, không chép đáp án, không học sai mà không biết |
+- Tính năng KHÔNG làm:
+    + Không được trả lời đáp án, thay vì thế thì hãy hướng dẫn, gợi ý từng bước cho học viên để tự trả lời. Vì nếu AI cho đáp án thì học viên sẽ ỷ lại và không chủ động học
+    + Không trả lời những câu hỏi vượt quá phạm vi của khóa học. Vì tốn chi phí tài nguyên nhưng lại không đem lại giá trị cho người học.
+    + Khi không có tài liệu thì không được trả lời mà thay vào đấy hãy gợi ý học viên hỏi giáo viên hoặc trợ giảng. Để hạn chế việc học sai mà không biết, không nhận ra.
+    + Không tự ý đăng FAQ khi chưa được duyệt. Vì có thể nội dung chưa chính xác hoàn toàn, không phù hợp với người học.
+
 
 ## §2. Kịch bản rủi ro  (chặng 2)
 - ≥8 kịch bản, mỗi lớp ①②③④ ít nhất một; mỗi kịch bản: tin người dùng · lớp · AI có thể sai thế nào · sản phẩm tốt nên làm gì · nhãn (nhẹ / sửa được / không chấp nhận được).
