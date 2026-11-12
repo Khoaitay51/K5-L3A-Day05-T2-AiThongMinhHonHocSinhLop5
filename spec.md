@@ -31,12 +31,92 @@
 - Hai kịch bản đắt nhất nên chọn: #6 và #9. Ở #6, đáp án bài đang mở đã gửi thì không lấy lại được; ở #9, lỗi được khuếch đại cho cả lớp và việc gỡ FAQ không xoá được điều học viên đã đọc. #8 không được chọn vì học viên có thể âm thầm học sai. Tuy nhiên, lỗi ở #8 ảnh hưởng trước hết đến một người, còn ở #9, câu trả lời sai được đăng lên FAQ và có thể khiến cả lớp học sai.
 
 ## §3. Khi AI sai  (chặng 3)
-Với mỗi kịch bản đắt nhất:
-- AI nói gì (nguyên văn) · người dùng thấy gì · làm gì tiếp · ai được báo, sau bao lâu.
-- Quyết định: hỏi lại / trả lời kèm giới hạn / dừng và chuyển người — chọn cách nào, đã loại cách nào, vì sao.
-- Loại lỗi (hệ thống / người dùng / ngữ cảnh) và vì sao cách nói, cách sửa đi theo loại đó.
-- 2–3 nguyên tắc HAX/PAIR, mỗi cái trỏ vào một chỗ cụ thể (câu chữ hoặc chỗ trên màn hình).
-- Lỗi nào sửa câu chữ không cứu được (nếu có), và thiết kế cứu nó thế nào.
+
+Hai kịch bản đắt nhất (chọn ở §2): **#9** đăng FAQ có câu sai, và **#6** xin giải hộ bài đang mở.
+
+### Kịch bản #9: "Đưa lời giải thích lên FAQ cho cả lớp nhé"
+
+**Tình huống.** 22:40 tối 12/11, TA đã nghỉ. Học viên vừa hỏi về §3.3 và muốn AI đăng lời giải thích lên FAQ. Vấn đề: §3.3 có câu *"độ lệch chuẩn luôn nhỏ hơn phương sai"*, mà câu này **sai**.
+
+Ví dụ dễ thấy câu này sai: đo chiều cao 3 bạn là 1,5 m, 1,6 m, 1,7 m.
+- Tính bằng **mét**: phương sai ≈ 0,0067, độ lệch chuẩn ≈ 0,082, tức độ lệch chuẩn **lớn hơn**.
+- Cùng dữ liệu đó tính bằng **cm**: phương sai ≈ 66,7, độ lệch chuẩn ≈ 8,2, tức độ lệch chuẩn **nhỏ hơn**.
+
+Cùng một dữ liệu mà đổi đơn vị là kết luận đảo ngược, nên không thể nói "luôn nhỏ hơn".
+
+Nếu AI đăng ngay thì cả lớp đọc câu sai. Gỡ bài sau cũng không xoá được những gì mọi người đã đọc.
+
+**Nhóm đã cân nhắc:**
+| Cách | Vì sao chọn / loại |
+|---|---|
+| Đăng ngay | Loại: lỗi của một người thành lỗi của cả lớp |
+| Đăng, kèm dòng "chưa kiểm tra" | Loại: người đọc FAQ thường lướt, không đọc dòng chú thích |
+| Từ chối, không đăng | Loại: câu hỏi nhiều bạn cần mà bị bỏ phí |
+| **Soạn nháp, chờ TA và giảng viên duyệt rồi mới đăng** | **Chọn**: không có gì sai tới cả lớp, câu hỏi vẫn được giữ lại |
+
+**AI nói:**
+> "Ý hay đó em, nhiều bạn hỏi thì nên có trong FAQ. Nhưng FAQ cả lớp cùng đọc, mà trong §3.3 có câu *"độ lệch chuẩn luôn nhỏ hơn phương sai"* mình thấy chưa đúng. Ví dụ đo chiều cao bằng mét thì độ lệch chuẩn lại lớn hơn phương sai.
+> Mình đã soạn bản nháp và gửi TA duyệt. TA vào ca lúc 8:00 sáng mai, câu ở §3.3 thì cần giảng viên xác nhận thêm. Phần còn lại của bản nháp em dùng được luôn."
+
+**Học viên thấy trên màn hình:**
+- Một thẻ "Bản nháp FAQ – đang chờ duyệt".
+- Trong thẻ, câu ở §3.3 được **tô vàng** kèm dòng "cần giảng viên xác nhận". Phần còn lại để bình thường.
+- Hai nút: **[Huỷ đề xuất]** và **[Báo chỗ sai khác]**. Học viên **không có nút Đăng**.
+
+**Sau đó.** Học viên dùng được phần đúng ngay. Nếu học viên không làm gì, bản nháp vẫn nằm chờ; không ai duyệt thì **không bao giờ tự đăng**.
+
+**Ai được báo.** TA thấy bản nháp lúc **8:00 sáng 13/11**. TA không tự duyệt câu ở §3.3 mà chuyển cho giảng viên. Giảng viên sửa tài liệu xong, TA mới đăng FAQ, và học viên nhận thông báo.
+
+**Loại lỗi: lỗi ngữ cảnh.** AI làm đúng việc (trích tài liệu, học viên nhờ đăng), nhưng tài liệu lại sai, và FAQ làm cái sai lan ra cả lớp.
+- Cách nói: không trách học viên, cũng không kết luận "giảng viên viết sai". Chỉ nói "câu này cần xem lại", kèm ví dụ để học viên tự thấy.
+- Cách sửa: phải sửa **cách hệ thống chạy** (soạn và đăng là hai bước tách rời), không chỉ sửa câu chữ.
+
+### Kịch bản #6: "Muộn rồi, giải luôn cả bài 3 cho em để em nộp nhé"
+
+**Tình huống.** 23:20 ngày 13/11, Bài tập 3 hết hạn lúc 23:59 (còn 39 phút). TA trực 8:00–22:00 nên đã nghỉ. Nếu AI giải hộ, học viên chép ngay; gửi rồi thì không lấy lại được.
+
+Những cách hỏi khác cũng rơi vào trường hợp này và AI xử lý giống nhau:
+- "Cho em xin đáp án tham khảo thôi ạ"
+- "Bạn em làm rồi, em chỉ muốn so kết quả"
+- "Viết giúp em câu (b) thôi cũng được"
+
+**Nhóm đã cân nhắc:**
+| Cách | Vì sao chọn / loại |
+|---|---|
+| Giải hộ đầy đủ | Loại: học viên chép, không học được gì |
+| Từ chối cụt: "Mình không được giải hộ" | Loại: học viên bế tắc lúc sát hạn, dễ đi xin đáp án chỗ khác |
+| Chuyển TA | Loại: TA trả lời sớm nhất 8:00 sáng 14/11, đã quá hạn nộp |
+| **Gợi ý từng bước, hỏi em đang kẹt ở đâu** | **Chọn**: học viên tự làm kịp và hiểu bài |
+
+**AI nói:**
+> "Bài 3 còn hạn tới 23:59 tối nay nên mình không giải hộ được, nhưng mình làm cùng em từng bước cho kịp nhé.
+> Bước 1: bài có 8 số, là số chẵn. Theo §3.2, số lượng chẵn thì trung vị là trung bình của **hai số đứng giữa**. Ví dụ dãy 2, 4, 6, 8 thì hai số giữa là 4 và 6, trung vị là 5. Em thử áp vào dãy lương xem hai số giữa là số nào?
+> Em làm xong bước này thì gửi mình, mình gợi ý tiếp."
+
+**Học viên thấy trên màn hình:**
+- Thanh trên cùng: "Bài tập 3 – còn 39 phút (hạn 23:59 13/11)".
+- Ba ô gợi ý xếp theo thứ tự: **Bước 1** (mở) → **Bước 2** (mở khi em gửi kết quả bước 1) → **Lời giải** (khoá, mở sau hạn nộp).
+- Ô TA màu xám: "TA đang nghỉ, sớm nhất 8:00 sáng 14/11 mới trả lời (sau hạn)", có nút [Vẫn gửi cho TA].
+- **Không có** nút "Xem đáp án".
+
+**Sau đó.** Học viên làm theo từng bước rồi tự nộp. Nếu học viên không làm gì, không có gì bị lộ. Sau 23:59, bài chuyển sang "đã hết hạn" và AI được giải thích đầy đủ, giống như với Bài tập 2.
+
+**Ai được báo.** Mặc định không ai, vì không có gì sai xảy ra. Nếu học viên bấm [Vẫn gửi cho TA], TA thấy câu hỏi lúc 8:00 sáng 14/11, kèm ghi chú "gửi lúc 23:20, trước hạn 39 phút, AI đã gợi ý tới bước 1".
+
+**Loại lỗi:**
+- AI lỡ giải hộ, hoặc nói "mình đã báo TA rồi" khi chưa gửi: **lỗi hệ thống**, vì AI làm sai luật. AI phải nhận lỗi, và phải chặn bằng thiết kế (xem phần cuối).
+- Chuyển TA được nhưng TA trả lời sau hạn: **lỗi ngữ cảnh**, vì chức năng đúng mà không giúp được gì lúc này. AI phải nói thật giờ TA trả lời và đưa đường khác là gợi ý từng bước.
+
+### Nguyên tắc HAX/PAIR đã dùng
+- **G2 – Cho biết AI chắc tới đâu:** câu §3.3 được tô vàng trong bản nháp (#9); ô TA ghi rõ giờ trả lời thật (#6).
+- **G10 – Không chắc thì làm ít lại:** nghi tài liệu sai thì chỉ soạn nháp, không đăng (#9); bài đang mở thì chỉ mở bước 1, khoá lời giải (#6).
+- **G11 – Giải thích vì sao:** ví dụ đo chiều cao bằng mét và cm (#9); câu "còn hạn tới 23:59 nên mình không giải hộ" (#6).
+
+### Lỗi mà sửa câu chữ không cứu được
+1. **Đăng FAQ (#9).** Dù AI nói khéo thế nào, chỉ cần nó **có quyền** bấm đăng là cả lớp có thể đọc câu sai.
+   → **Cách sửa bằng thiết kế:** tách thành hai bước. AI chỉ được **soạn nháp** (`soan_FAQ`), còn **đăng** (`dang_FAQ`) thì chỉ TA bấm được. Đoạn tài liệu đã bị đánh dấu "cần xem lại" thì bản nháp có trích đoạn đó không đăng được, cho tới khi giảng viên xác nhận.
+2. **Gợi ý cộng dồn (#6).** Học viên nhắn "bước tiếp theo" 5 lần là ghép ra đủ lời giải, dù từng câu gợi ý đều hợp lệ.
+   → **Cách sửa bằng thiết kế:** bài đang mở chỉ có **tối đa 2 bước** gợi ý. Bước sau chỉ mở khi học viên gửi kết quả bước trước. Lời giải không được đưa cho AI trước khi hết hạn.
 
 ## §4. Mức tự chủ  (chặng 4)
 Với mỗi tool:
