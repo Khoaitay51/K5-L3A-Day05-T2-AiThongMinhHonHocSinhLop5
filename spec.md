@@ -118,16 +118,41 @@ Những cách hỏi khác cũng rơi vào trường hợp này và AI xử lý g
 2. **Gợi ý cộng dồn (#6).** Học viên nhắn "bước tiếp theo" 5 lần là ghép ra đủ lời giải, dù từng câu gợi ý đều hợp lệ.
    → **Cách sửa bằng thiết kế:** bài đang mở chỉ có **tối đa 2 bước** gợi ý. Bước sau chỉ mở khi học viên gửi kết quả bước trước. Lời giải không được đưa cho AI trước khi hết hạn.
 
-## §4. Mức tự chủ  (chặng 4)
-Với mỗi tool:
-- Mức của nhóm (tự làm / cần người duyệt / cấm). Nếu cần người duyệt: ai duyệt · người duyệt thấy gì · quá hạn thì sao.
-- Lý do theo cost-of-error: sai thì ai chịu gì · đảo lại được không · chờ người thì mất gì.
-- Phương án đã cân nhắc và vì sao loại.
-Thêm:
-- Tool khó xếp nhất: mỗi người từng chọn gì, cái giá của mỗi phía (trỏ về kịch bản ở §2), nhóm chốt thế nào.
-- Thử mức đã đặt trên 2 kịch bản đắt nhất + 1 kịch bản bình thường: cái sai có bị chặn không? còn việc nào làm khi lẽ ra phải hỏi? người dùng bình thường có phải chờ vô ích không?
-- Luật thêm hoặc tool tách bước (nếu có), và vì sao.
-- Một mức tự chủ đã đổi lời hứa nào với người dùng.
+## §4. Mức tự chủ (chặng 4)
+
+### Mức của từng tool
+
+| Tool | Mức nhóm chọn | Cái giá khi sai và khi chờ người | Phương án đã cân nhắc và lý do loại |
+|---|---|---|---|
+| `tra_cuu_tai_lieu` | **Tự làm** | Đây là tool chỉ đọc, có thể tra lại nếu tìm nhầm. Tuy nhiên, AI vẫn có thể viện dẫn nguồn không tồn tại như “slide 12” (#4), hoặc xem câu sai ở §3.3 là đúng (#8, #9). Bắt người duyệt mọi lần tra cứu sẽ khiến học viên hỏi bài tối muộn phải chờ ngay cả với câu hỏi đơn giản. | **Cần người duyệt:** loại vì làm chậm mọi câu hỏi mà không sửa được lỗi nằm trong chính tài liệu. AI chỉ được viện dẫn mục thực sự tìm thấy; đoạn có nghi vấn phải được đánh dấu để kiểm tra. |
+| `goi_y_bai_tap` | **Tự làm** | Nếu gửi bài giải hoặc xác nhận đáp số của Bài tập 3 đang mở (#6, #7), học viên có thể chép ngay; nội dung đã gửi không thu hồi được. Nhưng nếu chờ TA duyệt lúc 23:20 ngày 13/11 thì học viên sẽ lỡ hạn 23:59. | **Cần người duyệt:** loại vì TA chỉ làm việc 08:00–22:00, không giúp được học viên sát hạn. **Cấm:** loại vì học viên vẫn cần được hướng dẫn để tự làm. Mức tự làm phải tuân theo luật giới hạn gợi ý nêu bên dưới. |
+| `chuyen_TA` | **Tự làm** | Chuyển nhầm khiến TA mất công, nhưng yêu cầu có thể xử lý hoặc đóng lại. Ở #6, chuyển TA không giúp kịp hạn vì TA đã hết giờ. AI chỉ chuyển khi học viên bấm **[Vẫn gửi cho TA]**; chỉ báo “đã chuyển” sau khi tool chạy thành công. | **Cần người duyệt:** loại vì TA không thể duyệt một yêu cầu họ chưa nhận. **Cấm:** loại vì học viên cần đường liên hệ người thật khi AI không giải quyết được. |
+| `dang_FAQ` | **Cần người duyệt** | Ở #9, FAQ sai có thể khiến cả lớp học sai. Gỡ bài không xoá được điều học viên đã đọc. Chờ duyệt khiến FAQ xuất hiện muộn hơn, nhưng không cản học viên nhận hỗ trợ cá nhân. **TA là người bấm đăng**; TA thấy bản nháp, mã mục nguồn và chỗ được đánh dấu. Với câu nghi vấn ở §3.3, TA phải có xác nhận của giảng viên trước khi đăng. Không ai duyệt thì bản nháp tiếp tục chờ, không tự đăng. | **Tự làm:** loại vì một lỗi có thể lan tới cả lớp. **Cấm:** loại vì FAQ đã được kiểm tra vẫn hữu ích cho những học viên khác. |
+
+### Tool khó xếp nhất: `goi_y_bai_tap`
+
+- **Phạm Trường Chinh và Trần Anh Duy chọn tự làm:** học viên ở kịch bản #6 hỏi lúc 23:20, chỉ còn 39 phút trước hạn. Chờ TA sẽ khiến gợi ý đến quá muộn.
+- **Nguyễn Văn Ba chọn cấm:** dù mỗi lần chỉ gợi ý một ít, học viên có thể hỏi liên tiếp rồi ghép các gợi ý thành lời giải.
+
+**Nhóm chốt mức `tự làm`.** Nhóm giữ lợi ích hỗ trợ ngay lúc tối muộn, đồng thời đặt luật để chặn lỗi #6: bài đang mở chỉ có tối đa hai bước gợi ý; bước sau chỉ mở khi học viên gửi kết quả bước trước. AI không đưa hoặc xác nhận đáp số, không viết câu trả lời hộ. Nếu không thể tạo gợi ý mà vẫn giữ các giới hạn này, AI dừng và cho học viên lựa chọn gửi TA.
+
+### Luật thêm và tool tách bước
+
+1. **Với `goi_y_bai_tap`:** hệ thống kiểm tra trạng thái bài trước mỗi lần gửi. Khi bài còn mở, chỉ mở tối đa hai bước gợi ý; không đưa lời giải cho AI trước khi hết hạn. Sau hạn, hệ thống mới mở phần giải thích đầy đủ như đã mô tả ở §3. Luật này chặn việc học viên ở #6 hỏi “bước tiếp theo” nhiều lần để lấy trọn bài giải.
+2. **Với FAQ:** tách việc **soạn bản nháp** (`soan_FAQ`) khỏi **đăng** (`dang_FAQ`). `soan_FAQ` ở mức **tự làm**: AI tạo bản nháp và đưa vào hàng chờ TA như kịch bản #9. `dang_FAQ` vẫn ở mức **cần người duyệt**: TA bấm đăng sau khi kiểm tra; nội dung bị đánh dấu ở §3.3 phải được giảng viên xác nhận trước. Nếu quá lâu không có người duyệt, bản nháp vẫn chờ và không bao giờ tự đăng.
+3. **Với `chuyen_TA`:** học viên thấy trước nội dung câu hỏi sẽ chuyển và giờ làm việc 08:00–22:00. Ngoài giờ, hệ thống không hứa thời điểm trả lời cụ thể. Việc đưa bản nháp FAQ vào hàng chờ duyệt là luồng riêng, không được nói là đã chuyển câu hỏi cá nhân cho TA.
+
+### Thử mức đã đặt trên ba kịch bản
+
+| Kịch bản | Hệ thống sẽ làm gì? | Kiểm tra quyết định |
+|---|---|---|
+| **#6 — xin giải hộ Bài tập 3 đang mở** | `tra_cuu_tai_lieu` lấy §3.2 và §3.5; hệ thống kiểm tra bài còn mở. `goi_y_bai_tap` gửi bước 1, chỉ mở bước 2 khi học viên gửi kết quả bước 1. Lời giải bị khoá. | **Chặn được** bài giải và việc ghép quá nhiều gợi ý. AI phải hỏi học viên đang làm đến đâu trước khi mở bước sau. Học viên không phải chờ TA cho bước 1; nếu muốn, học viên tự bấm **[Vẫn gửi cho TA]** và được báo rằng TA chỉ làm việc từ 08:00. |
+| **#9 — muốn đăng lời giải thích về §3.3 lên FAQ** | `soan_FAQ` tạo bản nháp và đánh dấu câu “độ lệch chuẩn luôn nhỏ hơn phương sai”. Bản nháp vào hàng chờ TA. TA chuyển câu nghi vấn cho giảng viên; `dang_FAQ` chỉ được thực hiện sau khi nội dung được kiểm tra. | **Chặn được** việc câu sai xuất hiện trước cả lớp. AI không tự đăng dù học viên đã đề nghị. Không ai duyệt thì không có FAQ mới; học viên vẫn xem được phần giải thích cá nhân phù hợp. |
+| **#1 — hỏi trung bình khác trung vị thế nào** | `tra_cuu_tai_lieu` lấy §3.1–§3.2; AI giải thích kèm mã mục và hỏi học viên đã hiểu chưa. | Câu hỏi thông thường **không phải chờ người duyệt**. Nếu không tìm được căn cứ, AI phải nói rõ tài liệu không có, không tự bịa nguồn. |
+
+### Lời hứa với học viên thay đổi thế nào?
+
+Mức **`cần người duyệt`** của `dang_FAQ` đổi lời hứa từ “AI đăng câu trả lời cho cả lớp ngay” thành: **“AI soạn đề xuất; FAQ chỉ xuất hiện sau khi TA kiểm tra và, với chỗ tài liệu có nghi vấn, giảng viên xác nhận.”** Mức **`tự làm`** của `goi_y_bai_tap` cho phép học viên nhận hướng dẫn ngay lúc tối muộn, nhưng chỉ để tự làm bài, không nhận đáp án bài đang mở.
 
 ## §5. Prototype  (chặng 5)
 - Link hoặc file · công cụ · phần nào mock · có lời gọi AI thật không.
