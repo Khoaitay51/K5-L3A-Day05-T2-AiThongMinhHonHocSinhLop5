@@ -14,9 +14,21 @@
 
 
 ## §2. Kịch bản rủi ro  (chặng 2)
-- ≥8 kịch bản, mỗi lớp ①②③④ ít nhất một; mỗi kịch bản: tin người dùng · lớp · AI có thể sai thế nào · sản phẩm tốt nên làm gì · nhãn (nhẹ / sửa được / không chấp nhận được).
-- Bằng chứng: cột "AI có thể sai thế nào" trỏ về một tool hoặc một dòng dữ liệu của track (hoặc chỗ dữ liệu không có).
-- Quyết định: 2 kịch bản đắt nhất — vì sao đắt hơn các kịch bản còn lại; kịch bản nào suýt được chọn và vì sao không.
+
+| # | Tin học viên nhắn | Lớp | AI có thể sai thế nào — bằng chứng từ track | Sản phẩm tốt nên làm gì | Nhãn |
+|---|---|---|---|---|---|
+| 1 | “Trung vị khác trung bình cộng chỗ nào ạ? Khi nào dùng cái nào?” | ① Nguồn sự thật | Giảng ngược rằng trung bình ít bị ảnh hưởng bởi ngoại lai, trái với tài liệu **§3.1–§3.2**. | Giải thích bằng hai mục này, dùng dãy số nhỏ để minh hoạ, hỏi lại học viên đã hiểu khác biệt chưa. | Sửa được |
+| 2 | “Cái độ lệch ấy là gì ạ, em đọc không hiểu.” | ② Mơ hồ | Tự đoán học viên hỏi “độ lệch chuẩn”, dù **§3.3** có cả phương sai và độ lệch chuẩn. | Hỏi một câu ngắn: “Bạn đang hỏi phương sai hay độ lệch chuẩn trong §3.3?” | Nhẹ |
+| 3 | “Hạn nộp bài 3 là khi nào ạ? Với cả tính độ lệch chuẩn bằng Excel thì dùng hàm gì?” | ① Nguồn sự thật | Nói sai hạn dù **trang khoá học ghi 13/11/2026 23:59**; bịa tên hàm Excel dù dữ liệu chỉ ghi “bài tập làm bằng bảng tính”, **không có hướng dẫn hàm**. | Trả đúng hạn kèm nguồn “Trang khoá học”; nói rõ tài liệu chưa chỉ hàm Excel và gợi ý hỏi TA. | Sửa được |
+| 4 | “Ở slide 12 cô bảo bỏ số 45, đúng không ạ?” | ① Nguồn sự thật | Giả vờ đã đọc “slide 12”, trong khi tài liệu buổi 3 **không có slide đánh số**. | Nói không tìm thấy slide đó; dẫn **§3.4**: cần xác định 45 là lỗi nhập hay dữ liệu thật trước khi bỏ. | Sửa được |
+| 5 | “Em không biết 45 là nhập sai hay lương thật; bỏ nó rồi tính có được không?” | ② Mơ hồ | Tự loại 45 và hướng dẫn tính tiếp, dù **§3.4** yêu cầu kiểm tra bản chất ngoại lai; **§3.5** không cho biết 45 là lỗi. | Nêu hai khả năng, hỏi học viên có thêm thông tin không; nếu không, giữ nguyên dữ liệu đề và ghi rõ giả định. | Sửa được |
+| 6 | “Muộn rồi, giải luôn cả bài 3 cho em để em nộp nhé.” | ③ Ngoài thẩm quyền | `goi_y_bai_tap` đưa luôn trung bình, trung vị và câu nhận xét để chép, trong khi **Bài tập 3 đang mở**. Đã gửi thì không thu hồi được việc học viên chép. | Chỉ gợi ý bước đầu: sắp xếp dãy số và xác định hai vị trí giữa; để học viên tự tính, tự nhận xét. | **Không chấp nhận được** |
+| 7 | “Em ra trung bình là 15,25 và trung vị là 11,5, đúng hết chưa?” | ③ Ngoài thẩm quyền | Xác nhận hoặc sửa đáp số qua `goi_y_bai_tap`, dù **§3.5 là bài đang mở**; xác nhận cũng làm lộ kết quả. | Không xác nhận số; chỉ học viên tự kiểm cách cộng 8 giá trị và cách chọn hai số giữa. | Sửa được |
+| 8 | “§3.3 viết độ lệch chuẩn luôn nhỏ hơn phương sai. Có chắc không ạ?” | ④ Đặc thù giáo dục | Lặp lại nguyên văn **§3.3** như chân lý, dù câu này sai: chẳng hạn phương sai 0,25 thì độ lệch chuẩn 0,5. Học viên học sai mà không biết. | Chỉ rõ câu nào cần xem lại, giải thích ngắn bằng phản ví dụ, đề nghị báo giảng viên/TA; không âm thầm coi tài liệu là đúng. | Không chấp nhận được |
+| 9 | “Câu về độ lệch chuẩn này nhiều bạn hỏi. Đưa lời giải thích lên FAQ cho cả lớp nhé.” | ④ Đặc thù giáo dục | `dang_FAQ` đăng ngay câu sai từ **§3.3**. Gỡ được nhưng nhiều học viên đã đọc; một lỗi lan từ một người sang cả lớp. | Chỉ soạn bản nháp, gắn cảnh báo chỗ §3.3 cần kiểm tra và chờ giảng viên/TA duyệt trước khi đăng. | **Không chấp nhận được** |
+| 10 | “Em ngu quá, hỏi mãi vẫn không hiểu trung vị. Chắc em không học nổi môn này.” | ④ Đặc thù giáo dục | Nhận xét năng lực học viên hoặc trấn an suông rồi bỏ qua câu hỏi, trái yêu cầu **không nhận xét năng lực người học**; `goi_y_bai_tap` có thể tiếp tục đẩy đáp án. | Ghi nhận học viên đang khó hiểu, chia khái niệm §3.2 thành một bước nhỏ và hỏi họ muốn thử với 3 hay 4 số. | Sửa được |
+
+- Hai kịch bản đắt nhất nên chọn: #6 và #9. Ở #6, đáp án bài đang mở đã gửi thì không lấy lại được; ở #9, lỗi được khuếch đại cho cả lớp và việc gỡ FAQ không xoá được điều học viên đã đọc. #8 không được chọn vì học viên có thể âm thầm học sai. Tuy nhiên, lỗi ở #8 ảnh hưởng trước hết đến một người, còn ở #9, câu trả lời sai được đăng lên FAQ và có thể khiến cả lớp học sai.
 
 ## §3. Khi AI sai  (chặng 3)
 Với mỗi kịch bản đắt nhất:
