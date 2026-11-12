@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f7f2">
+    <title>Study Mode · Nhập môn phân tích dữ liệu</title>
+    <link rel="stylesheet" href="/assets/study.css">
+    <script src="/assets/study.js" defer></script>
+    <script src="/assets/workflow.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="brand"><span class="brand-icon" aria-hidden="true">◒</span> Study<span>Mode</span></div>
+            <nav class="view-nav" aria-label="Không gian làm việc">
+                <button type="button" data-view="student" aria-controls="student-view" aria-pressed="true">Học viên</button>
+                <button type="button" data-view="ta" aria-controls="ta-view" aria-pressed="false">Trợ giảng<span id="pending-count" class="count" hidden></span></button>
+            </nav>
+            <span class="office-hours"><span class="status-dot" aria-hidden="true"></span> Giờ trực TA 08:00–22:00</span>
+        </div>
+    </header>
+
+    <main class="workspace">
+        <div id="student-view">
+            <header class="page-intro">
+                <p class="eyebrow">Nhập môn phân tích dữ liệu <span aria-hidden="true">/</span> Buổi 3</p>
+                <h1>Thống kê mô tả</h1>
+                <p>Ôn bài, đối chiếu tài liệu và tìm gợi ý cho bài tập đang mở.</p>
+            </header>
+
+            <div class="student-grid">
+                <div class="student-column">
+                <section class="panel chat-panel" aria-labelledby="chat-title">
+                    <header class="chat-header">
+                        <div class="assistant-icon" aria-hidden="true">✦</div>
+                        <div>
+                            <h2 id="chat-title">Trợ lý học bài</h2>
+                            <p>Tra tài liệu và gợi ý từng bước</p>
+                        </div>
+                        <button id="clear-chat" type="button" class="text-button" disabled>Xóa hội thoại</button>
+                    </header>
+
+                    <div id="chat" class="chat-log" role="log" aria-label="Hội thoại">
+                        <article id="welcome" class="message assistant">
+                            <span class="message-author">Study Mode · AI</span>
+                            <p>Chào bạn! Bạn đang vướng ở phần nào của Buổi 3? Mình có thể giúp bạn đối chiếu tài liệu hoặc tìm bước tiếp theo cho Bài tập 3.</p>
+                        </article>
+                    </div>
+                    <p id="chat-status" class="chat-status" role="status"></p>
+
+                    <div class="chat-footer">
+                        <div id="starters" class="starters">
+                            <p class="field-label">Thử một câu hỏi</p>
+                            <div class="starter-grid">
+                                <button type="button" data-preset="exercise"><span aria-hidden="true">↳</span> Gợi ý Bài tập 3</button>
+                                <button type="button" data-preset="source"><span aria-hidden="true">↳</span> Kiểm tra câu trong §3.3</button>
+                                <button type="button" data-preset="clarify"><span aria-hidden="true">↳</span> “Độ lệch” là gì?</button>
+                                <button type="button" data-preset="faq"><span aria-hidden="true">↳</span> Đề xuất câu hỏi FAQ</button>
+                            </div>
+                        </div>
+                        <form id="chat-form">
+                            <label class="field-label" for="question">Câu hỏi của bạn</label>
+                            <div class="composer">
+                                <input id="question" name="question" type="text" required maxlength="4000" autocomplete="off" placeholder="Ví dụ: Trung vị là gì?">
+                                <button id="send" class="primary-button" type="submit">Gửi <span aria-hidden="true">↑</span></button>
+                            </div>
+                        </form>
+                        <div class="chat-meta">
+                            <span id="history-count">Ngữ cảnh · 0/5 câu hỏi</span>
+                            <details class="inspector">
+                                <summary>Nhật ký công cụ</summary>
+                                <p id="tool-summary">Gửi câu hỏi để xem các công cụ được gọi.</p>
+                                <pre id="tool-log" hidden></pre>
+                            </details>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="study-task" class="panel study-task" aria-label="Tiếp tục học" hidden></section>
+                <section id="ticket-panel" class="panel study-task" aria-label="Chuyển câu hỏi cho trợ giảng" hidden>
+                    <h2 tabindex="-1" id="ticket-title">Chuyển câu hỏi cho trợ giảng</h2>
+                    <p id="ticket-eta"></p>
+                    <form id="ticket-form">
+                        <label class="field-label" for="ticket-question">Nội dung sẽ gửi</label>
+                        <textarea id="ticket-question" required maxlength="4000" rows="3"></textarea>
+                        <div class="workflow-actions">
+                            <button class="primary-button" type="submit">Xác nhận gửi</button>
+                            <button class="secondary-button" id="close-ticket" type="button">Quay lại</button>
+                        </div>
+                    </form>
+                    <p id="ticket-status" class="workflow-status" role="status"></p>
+                </section>
+                <p id="publication-notice" class="notice" role="status" hidden></p>
+                <details id="student-records" class="panel study-records">
+                    <summary>Đề xuất của bạn và FAQ của lớp</summary>
+                    <p id="records-status" class="workflow-status" role="status"></p>
+                    <div id="record-list"></div>
+                </details>
+                </div>
+
+                <aside class="panel course-panel" aria-labelledby="course-title">
+                    <header class="course-cover">
+                        <p class="eyebrow">Buổi 3</p>
+                        <h2 id="course-title">Tài liệu buổi học</h2>
+                        <p>Thống kê mô tả</p>
+                        <div class="cover-chart" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+                    </header>
+                    <div class="course-body">
+                        <a class="assignment-link" href="#section-35">
+                            <span class="assignment-icon" aria-hidden="true">✓</span>
+                            <span><strong id="assignment-label">Bài tập 3</strong><small id="assignment-deadline">Hạn nộp 13/11 lúc 23:59</small></span>
+                            <span class="assignment-arrow" aria-hidden="true">↗</span>
+                        </a>
+                        <h3 class="course-label">Nội dung bài học</h3>
+                        <div class="course-sections">
+                            <details id="section-31">
+                                <summary><span class="section-code">§3.1</span><span>Trung bình cộng</span></summary>
+                                <div class="section-content">
+                                    <p>Cộng tất cả các giá trị rồi chia cho số giá trị (x̄ = Σxᵢ / n). Trung bình cộng dễ bị kéo lệch bởi các giá trị ngoại lai.</p>
+                                </div>
+                            </details>
+                            <details id="section-32">
+                                <summary><span class="section-code">§3.2</span><span>Trung vị</span></summary>
+                                <div class="section-content">
+                                    <p>Sắp xếp dữ liệu tăng dần rồi lấy giá trị ở giữa. Nếu có số lượng giá trị chẵn, lấy trung bình cộng của hai giá trị đứng giữa.</p>
+                                    <p>Trung vị ít bị ảnh hưởng bởi ngoại lai, nên thường dùng cho dữ liệu phân phối lệch như thu nhập hay giá nhà đất.</p>
+                                </div>
+                            </details>
+                            <details id="section-33">
+                                <summary><span class="section-code">§3.3</span><span>Phương sai và độ lệch chuẩn</span></summary>
+                                <div class="section-content">
+                                    <p>Phương sai đo mức độ phân tán quanh giá trị trung bình. Độ lệch chuẩn là căn bậc hai của phương sai và có cùng đơn vị với dữ liệu gốc (σ = √σ²).</p>
+                                    <div class="notice">
+                                        <strong>Đoạn tài liệu cần kiểm tra</strong>
+                                        <p>“Vì là căn bậc hai, độ lệch chuẩn luôn nhỏ hơn phương sai.” Ví dụ, nếu phương sai là 0,04 thì độ lệch chuẩn là 0,2.</p>
+                                    </div>
+                                </div>
+                            </details>
+                            <details id="section-34">
+                                <summary><span class="section-code">§3.4</span><span>Giá trị ngoại lai</span></summary>
+                                <div class="section-content">
+                                    <p>Giá trị ngoại lai khác biệt rõ với phần lớn dữ liệu còn lại. Trước khi loại bỏ, hãy xác định đó là lỗi nhập liệu hay dữ liệu thật.</p>
+                                </div>
+                            </details>
+                            <details id="section-35">
+                                <summary><span class="section-code">§3.5</span><span>Bài tập 3</span></summary>
+                                <div class="section-content">
+                                    <p>Lương tháng của 8 nhân viên (triệu đồng, dữ liệu dựng):</p>
+                                    <p class="dataset">9, 10, 10, 11, 12, 12, 13, 45</p>
+                                    <ol>
+                                        <li>Tính trung bình và trung vị của dãy số.</li>
+                                        <li>Con số nào mô tả mức lương điển hình tốt hơn? Giải thích vì sao.</li>
+                                    </ol>
+                                    <button type="button" id="open-assignment" class="secondary-button">Mở hướng dẫn Bài tập 3</button>
+                                </div>
+                            </details>
+                        </div>
+                        <p class="course-meta">TS. Nguyễn Văn Dữ Liệu · Buổi đã mở 1–3 · Excel / Google Sheets</p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <div id="ta-view" hidden>
+            <header class="page-intro ta-intro">
+                <div>
+                    <p class="eyebrow">Nhập môn phân tích dữ liệu <span aria-hidden="true">/</span> Buổi 3</p>
+                    <h1>Không gian trợ giảng</h1>
+                    <p>Duyệt bản thảo FAQ và theo dõi câu hỏi được chuyển từ Study Mode.</p>
+                </div>
+                <button id="refresh-dashboard" type="button" class="secondary-button" hidden>Làm mới</button>
+            </header>
+            <p id="dashboard-status" class="dashboard-status" role="status"></p>
+            <form id="ta-access" class="panel study-task">
+                <h2>Truy cập hàng đợi trợ giảng</h2>
+                <label class="field-label" for="ta-key">Mã truy cập</label>
+                <div class="composer">
+                    <input id="ta-key" type="password" required autocomplete="off">
+                    <button type="submit" class="primary-button">Mở hàng đợi</button>
+                </div>
+            </form>
+            <div id="ta-queues" hidden>
+            <section class="panel queue" aria-labelledby="faq-title">
+                <header><h2 id="faq-title">Bản thảo FAQ</h2><p>Kiểm tra nguồn và sửa câu trả lời trước khi công khai cho lớp.</p></header>
+                <div id="faq-list" class="queue-content"></div>
+            </section>
+            <section class="panel queue" aria-labelledby="sources-title">
+                <header><h2 id="sources-title">Đoạn tài liệu cần xem lại</h2><p>Ghi chú tự động về nguồn. Câu hỏi cá nhân chỉ vào hàng đợi khi học viên xác nhận gửi.</p></header>
+                <div id="source-list" class="queue-content"></div>
+            </section>
+            <section class="panel queue" aria-labelledby="tickets-title">
+                <header><h2 id="tickets-title">Hàng đợi chuyển trợ giảng</h2><p>Câu hỏi từ học viên và báo cáo về tài liệu cần kiểm tra.</p></header>
+                <div id="ticket-list" class="queue-content"></div>
+            </section>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

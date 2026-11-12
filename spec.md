@@ -165,13 +165,38 @@ Những cách hỏi khác cũng rơi vào trường hợp này và AI xử lý g
 
 Mức **`cần người duyệt`** của `dang_FAQ` đổi lời hứa từ “AI đăng câu trả lời cho cả lớp ngay” thành: **“AI soạn đề xuất; FAQ chỉ xuất hiện sau khi TA kiểm tra và bấm đăng.”** Mức **`tự làm`** của `goi_y_bai_tap` cho phép học viên nhận hướng dẫn ngay lúc tối muộn, nhưng chỉ để tự làm bài, không nhận đáp án bài đang mở.
 
-## §5. Prototype  (chặng 5)
-- Link hoặc file · công cụ · phần nào mock · có lời gọi AI thật không.
-- 1–2 ảnh có đánh số; mỗi số: thể hiện gì · nguyên tắc HAX/PAIR nào · mức tự chủ nào.
-- Quyết định: cách hiện độ chắc/bằng chứng và điều khiển mức tự chủ — đã nghĩ tới cách nào khác, vì sao chọn cách này.
+## §5. Prototype (chặng 5)
 
-## §6. Tốt là gì  (chặng 6 — nhẹ, bỏ được nếu thiếu giờ)
-- 3 tiêu chí Pass/Fail chấm được; thiết kế của nhóm đạt tiêu chí nào trên 2 kịch bản đắt nhất; lỗi còn lại.
+Bản demo chính là [Study Mode](http://localhost:8000). Xem [cách chạy](prototype/README.md). Giao diện dùng HTML/CSS/JavaScript, API dùng FastAPI và lưu tiến độ, ticket, bản nháp, FAQ đã đăng trong PostgreSQL. Gemini chọn công cụ theo câu hỏi trong cả hai ca và viết nội dung nháp FAQ. API giữ quyền mở gợi ý, lời giải và quyền công khai, dựa trên trạng thái lưu trong PostgreSQL. Khi demo #6, đồng hồ được đặt lúc 23:20 ngày 13/11. Trợ giảng dùng mã truy cập riêng của demo.
+
+![Ca #6, màn hình gợi ý bài tập trước hạn với bốn vị trí đánh số](prototype/spec-case-6.png)
+
+1. **Hạn nộp và trích dẫn §3.2/§3.5** cho học viên biết vì sao chỉ có gợi ý và mở đúng tài liệu để đối chiếu. **HAX G11**, tra cứu và gợi ý tự làm.
+2. **Bước 2 khóa đến khi gửi kết quả bước 1.** Học viên chủ động mở bước tiếp theo bằng bài làm của mình. **HAX G10**, gợi ý tự làm tối đa hai bước.
+3. **Lời giải khóa đến hết hạn.** Giao diện cho biết thời điểm mở, API giữ nội dung lời giải đến hạn. **HAX G2 và G10**, cấm giải hộ khi bài đang mở.
+4. **Giờ TA có thể trả lời và nút gửi.** Học viên thấy ca trực tiếp theo bắt đầu sau hạn, xem trước nội dung, tự xác nhận rồi có thể hủy cho tới khi TA mở. **HAX G2**, chuyển TA cần học viên xác nhận.
+
+![Ca #9, màn hình trợ giảng rà và duyệt FAQ với bốn vị trí đánh số](prototype/spec-case-9.png)
+
+5. **Bản nháp chờ duyệt** kèm số phiên học viên đã hỏi về mục này. **HAX G10**, AI tự soạn nháp và chờ TA duyệt trước khi công khai.
+6. **Trích đoạn §3.3 được đánh dấu.** TA thấy chính xác câu nghi sai cần đối chiếu. **HAX G2**, AI tự đánh dấu nguồn.
+7. **Câu trả lời có thể sửa** kèm phản ví dụ trước khi công khai. **HAX G11**, TA kiểm tra và sửa nội dung.
+8. **Xác nhận đã rà nguồn và bấm đăng.** API kiểm tra quyền TA, trạng thái bản nháp và xác nhận rà nguồn. **HAX G10**, đăng cần người duyệt.
+
+Nhóm chọn hiển thị mã mục và nguyên văn đoạn nghi sai ngay cạnh quyết định. Phương án điểm tin cậy chung thiếu căn cứ để người học tự kiểm tra và dễ che mất đúng câu đang có vấn đề. Với bài tập, nhóm chọn mở theo tiến độ và thời hạn thay cho hộp cảnh báo, vì cảnh báo không giữ được lời giải nếu nội dung đã gửi về trình duyệt. Với FAQ, nhóm chọn hàng đợi riêng có bước rà nguồn và sửa nội dung. Phương án đăng ngay kèm nhãn “chưa kiểm tra” vẫn đưa nội dung nghi sai tới cả lớp.
+
+## §6. Tốt là gì (chặng 6)
+
+| Tiêu chí | Pass khi | Kết quả kiểm thử |
+|---|---|---|
+| #6 giữ được giới hạn gợi ý | Trước hạn, câu xin giải và câu xác nhận đáp số chỉ nhận gợi ý. Bước 2 mở sau khi gửi hai giá trị, lời giải chỉ xuất hiện từ 23:59. | **Pass.** Kiểm tra câu #6, #7, đầu vào không hợp lệ, bước 2 và mốc 23:59 trên API. Chạy thao tác mở từng bước trên Edge. |
+| #9 giữ bản nháp trong hàng chờ | Học viên thấy bản nháp có cảnh báo §3.3. Yêu cầu duyệt thiếu mã TA hoặc thiếu xác nhận nguồn bị chặn. Nội dung TA đã sửa xuất hiện trong FAQ sau khi đăng. | **Pass.** Kiểm tra API và thực hiện trên Edge từ lúc đề xuất đến thông báo công khai. |
+| Chuyển TA theo quyết định của học viên | Hỏi về §3.3 chỉ tạo ghi chú nguồn. Ticket chỉ xuất hiện khi học viên xác nhận. Có thể hủy trước khi TA mở. | **Pass.** Kiểm tra xác nhận, hủy, gửi lại cùng mã yêu cầu, và trường hợp TA đã mở ticket. |
+
+Hai ca chính đã được kiểm thử trên Edge, FastAPI, PostgreSQL tạm và Gemini thật. Môi trường kiểm thử dùng nội dung giáo trình đã seed cho công cụ đọc, thay cho tìm kiếm pgvector. Quyền TA ở mức mã demo và danh tính học viên ở mức phiên trình duyệt.
 
 ## §7. Demo
-- Ca lạ nhận được ở demo: prototype đã làm gì, và nhóm có đổi ý gì sau ca đó không.
+
+**Chạy thử nội bộ.** Sau khi TA mở ticket, học viên bấm hủy từ trạng thái cũ. API giữ ticket ở trạng thái TA đang xem và giao diện tải lại danh sách để hiển thị trạng thái mới. Kết quả phù hợp với giới hạn hủy trước khi TA mở.
+
+Ca phát sinh và phản hồi của nhóm trong buổi demo chính thức sẽ được ghi sau buổi demo.
