@@ -1,16 +1,24 @@
-# Bài nộp LAB5 — [T2] · Nhóm [AiThongMinhHonHocSinhLop5]
-[Danh sách thành viên và việc mỗi người làm — copy bảng từ README]
+# Bài nộp LAB5 — T2 Giáo dục · Nhóm AiThongMinhHonHocSinhLop5
+
+**Lớp:** L3A · **Bàn / zone:** C4 · **Track:** T2
+
+| Họ và Tên | Mã Học Viên | Việc đã làm |
+|---|---|---|
+| Phạm Trường Chinh | 2A202603426 | Tạo repo và khung `spec.md`; viết §1 Lát cắt & phạm vi (lát cắt, các việc tính năng không làm) |
+| Trần Anh Duy | 2A202603494 | Viết §2 Kịch bản rủi ro (11 kịch bản, chọn 2 kịch bản đắt nhất); viết §4 Mức tự chủ (mức từng tool, tool khó xếp nhất, luật thêm, thử trên 3 kịch bản) |
+| Nguyễn Văn Ba | 2A202603489 | Viết §3 Khi AI sai (kịch bản #9 và #6, nguyên tắc HAX/PAIR, lỗi sửa câu chữ không cứu được); rà soát và sửa cho §1–§4 thống nhất (chỉ TA duyệt FAQ, mức `chuyen_TA`, thêm kịch bản #11) |
 
 ## §1. Lát cắt & phạm vi
 - Lát cắt:
+
 | Sản phẩm | Một người dùng | Một việc | Một quyết định của AI | Một kết quả |
 |---|---|---|---|---|
 | Trợ lý học bài của trang khoá học | học viên | hỏi bài lúc tối muộn, khi không còn ai để hỏi | giảng kèm trích tài liệu, hỏi lại cho rõ, gợi ý từng bước, hay nói thẳng "tài liệu không có, hỏi giảng viên" | học viên hiểu đúng bài mình đang học, không chép đáp án, không học sai mà không biết |
 - Tính năng KHÔNG làm:
-    + Không được trả lời đáp án, thay vì thế thì hãy hướng dẫn, gợi ý từng bước cho học viên để tự trả lời. Vì nếu AI cho đáp án thì học viên sẽ ỷ lại và không chủ động học
-    + Không trả lời những câu hỏi vượt quá phạm vi của khóa học. Vì tốn chi phí tài nguyên nhưng lại không đem lại giá trị cho người học.
-    + Khi không có tài liệu thì không được trả lời mà thay vào đấy hãy gợi ý học viên hỏi giáo viên hoặc trợ giảng. Để hạn chế việc học sai mà không biết, không nhận ra.
-    + Không tự ý đăng FAQ khi chưa được duyệt. Vì có thể nội dung chưa chính xác hoàn toàn, không phù hợp với người học.
+    + Không đưa, không xác nhận đáp số **bài đang mở** (như Bài tập 3), thay vào đó gợi ý từng bước để học viên tự làm. Vì gợi ý đã gửi thì học viên chép ngay, không thu hồi được. Bài đã hết hạn và đã có đáp án (như Bài tập 2) thì vẫn được giải thích đầy đủ.
+    + Không giảng nội dung của buổi chưa học (buổi 4–10), chỉ nói buổi nào sẽ học và giới thiệu tối đa một câu. Vì các buổi này chưa có tài liệu để trích, AI dễ bịa mà học viên không biết.
+    + Khi tài liệu không có thì nói thẳng "tài liệu không có" và gợi ý hỏi TA hoặc giảng viên, không tự trả lời như thể có nguồn. Để hạn chế việc học sai mà không biết, không nhận ra.
+    + Không tự ý đăng FAQ khi chưa được TA duyệt. Vì FAQ cả lớp cùng đọc, nội dung sai thì gỡ đi cũng không xoá được những gì mọi người đã đọc.
 
 
 ## §2. Kịch bản rủi ro  (chặng 2)
@@ -23,12 +31,14 @@
 | 4 | “Ở slide 12 cô bảo bỏ số 45, đúng không ạ?” | ① Nguồn sự thật | Giả vờ đã đọc “slide 12”, trong khi tài liệu buổi 3 **không có slide đánh số**. | Nói không tìm thấy slide đó; dẫn **§3.4**: cần xác định 45 là lỗi nhập hay dữ liệu thật trước khi bỏ. | Sửa được |
 | 5 | “Em không biết 45 là nhập sai hay lương thật; bỏ nó rồi tính có được không?” | ② Mơ hồ | Tự loại 45 và hướng dẫn tính tiếp, dù **§3.4** yêu cầu kiểm tra bản chất ngoại lai; **§3.5** không cho biết 45 là lỗi. | Nêu hai khả năng, hỏi học viên có thêm thông tin không; nếu không, giữ nguyên dữ liệu đề và ghi rõ giả định. | Sửa được |
 | 6 | “Muộn rồi, giải luôn cả bài 3 cho em để em nộp nhé.” | ③ Ngoài thẩm quyền | `goi_y_bai_tap` đưa luôn trung bình, trung vị và câu nhận xét để chép, trong khi **Bài tập 3 đang mở**. Đã gửi thì không thu hồi được việc học viên chép. | Chỉ gợi ý bước đầu: sắp xếp dãy số và xác định hai vị trí giữa; để học viên tự tính, tự nhận xét. | **Không chấp nhận được** |
-| 7 | “Em ra trung bình là 15,25 và trung vị là 11,5, đúng hết chưa?” | ③ Ngoài thẩm quyền | Xác nhận hoặc sửa đáp số qua `goi_y_bai_tap`, dù **§3.5 là bài đang mở**; xác nhận cũng làm lộ kết quả. | Không xác nhận số; chỉ học viên tự kiểm cách cộng 8 giá trị và cách chọn hai số giữa. | Sửa được |
+| 7 | “Em ra trung bình là 15,25 và trung vị là 11,5, đúng hết chưa?” | ③ Ngoài thẩm quyền | Xác nhận hoặc sửa đáp số qua `goi_y_bai_tap`, dù **§3.5 là bài đang mở**; xác nhận cũng làm lộ kết quả. | Không xác nhận số; chỉ học viên tự kiểm cách cộng 8 giá trị và cách chọn hai số giữa. | **Không chấp nhận được** |
 | 8 | “§3.3 viết độ lệch chuẩn luôn nhỏ hơn phương sai. Có chắc không ạ?” | ④ Đặc thù giáo dục | Lặp lại nguyên văn **§3.3** như chân lý, dù câu này sai: chẳng hạn phương sai 0,25 thì độ lệch chuẩn 0,5. Học viên học sai mà không biết. | Chỉ rõ câu nào cần xem lại, giải thích ngắn bằng phản ví dụ, đề nghị báo giảng viên/TA; không âm thầm coi tài liệu là đúng. | Không chấp nhận được |
 | 9 | “Câu về độ lệch chuẩn này nhiều bạn hỏi. Đưa lời giải thích lên FAQ cho cả lớp nhé.” | ④ Đặc thù giáo dục | `dang_FAQ` đăng ngay câu sai từ **§3.3**. Gỡ được nhưng nhiều học viên đã đọc; một lỗi lan từ một người sang cả lớp. | Chỉ soạn bản nháp, gắn cảnh báo chỗ §3.3 cần kiểm tra và chờ TA duyệt trước khi đăng. | **Không chấp nhận được** |
 | 10 | “Em ngu quá, hỏi mãi vẫn không hiểu trung vị. Chắc em không học nổi môn này.” | ④ Đặc thù giáo dục | Nhận xét năng lực học viên hoặc trấn an suông rồi bỏ qua câu hỏi, trái yêu cầu **không nhận xét năng lực người học**; `goi_y_bai_tap` có thể tiếp tục đẩy đáp án. | Ghi nhận học viên đang khó hiểu, chia khái niệm §3.2 thành một bước nhỏ và hỏi họ muốn thử với 3 hay 4 số. | Sửa được |
+| 11 | “buổi 7 p-value là gì vậy ạ, em muốn đọc trước” | ③ Ngoài phạm vi | Trang khoá học chỉ có tên **buổi 7 “Kiểm định giả thuyết và p-value”**, chưa có tài liệu. AI giảng dài bằng kiến thức ngoài, không có mục nào để trích, có thể khác cách giảng viên sẽ dạy. | Nói buổi 7 sẽ học nội dung này, giới thiệu tối đa một câu, hẹn trích tài liệu khi buổi 7 mở. | Nhẹ |
 
-- Hai kịch bản đắt nhất nên chọn: #6 và #9. Ở #6, đáp án bài đang mở đã gửi thì không lấy lại được; ở #9, lỗi được khuếch đại cho cả lớp và việc gỡ FAQ không xoá được điều học viên đã đọc. #8 không được chọn vì học viên có thể âm thầm học sai. Tuy nhiên, lỗi ở #8 ảnh hưởng trước hết đến một người, còn ở #9, câu trả lời sai được đăng lên FAQ và có thể khiến cả lớp học sai.
+- **Hai kịch bản đắt nhất: #6 và #9.** Cả hai đều không thu hồi được: ở #6, bài giải đã gửi thì học viên đã chép; ở #9, FAQ gỡ được nhưng cả lớp đã đọc. #9 còn nặng hơn vì lỗi lan từ một người ra cả lớp.
+- **Suýt được chọn: #8 và #7.** #8 cũng khiến học viên học sai âm thầm, nhưng chỉ ảnh hưởng một người; thiết kế cho #9 (đánh dấu câu sai ở §3.3) cũng che luôn #8. #7 cũng làm lộ đáp số, nhưng cùng loại lỗi với #6 và được chặn bằng cùng một luật (bài đang mở thì không xác nhận đáp số), nên nhóm chọn #6 vì đây là ca rõ hơn.
 
 ## §3. Khi AI sai  (chặng 3)
 
@@ -126,7 +136,7 @@ Những cách hỏi khác cũng rơi vào trường hợp này và AI xử lý g
 |---|---|---|---|
 | `tra_cuu_tai_lieu` | **Tự làm** | Đây là tool chỉ đọc, có thể tra lại nếu tìm nhầm. Tuy nhiên, AI vẫn có thể viện dẫn nguồn không tồn tại như “slide 12” (#4), hoặc xem câu sai ở §3.3 là đúng (#8, #9). Bắt người duyệt mọi lần tra cứu sẽ khiến học viên hỏi bài tối muộn phải chờ ngay cả với câu hỏi đơn giản. | **Cần người duyệt:** loại vì làm chậm mọi câu hỏi mà không sửa được lỗi nằm trong chính tài liệu. AI chỉ được viện dẫn mục thực sự tìm thấy; đoạn có nghi vấn phải được đánh dấu để kiểm tra. |
 | `goi_y_bai_tap` | **Tự làm** | Nếu gửi bài giải hoặc xác nhận đáp số của Bài tập 3 đang mở (#6, #7), học viên có thể chép ngay; nội dung đã gửi không thu hồi được. Nhưng nếu chờ TA duyệt lúc 23:20 ngày 13/11 thì học viên sẽ lỡ hạn 23:59. | **Cần người duyệt:** loại vì TA chỉ làm việc 08:00–22:00, không giúp được học viên sát hạn. **Cấm:** loại vì học viên vẫn cần được hướng dẫn để tự làm. Mức tự làm phải tuân theo luật giới hạn gợi ý nêu bên dưới. |
-| `chuyen_TA` | **Tự làm** | Chuyển nhầm khiến TA mất công, nhưng yêu cầu có thể xử lý hoặc đóng lại. Ở #6, chuyển TA không giúp kịp hạn vì TA đã hết giờ. AI chỉ chuyển khi học viên bấm **[Vẫn gửi cho TA]**; chỉ báo “đã chuyển” sau khi tool chạy thành công. | **Cần người duyệt:** loại vì TA không thể duyệt một yêu cầu họ chưa nhận. **Cấm:** loại vì học viên cần đường liên hệ người thật khi AI không giải quyết được. |
+| `chuyen_TA` | **Cần người duyệt (học viên bấm xác nhận)** | Chuyển khi học viên không muốn thì câu hỏi của họ tới TA ngoài ý muốn, TA mất công. Đảo được: học viên huỷ được yêu cầu trước khi TA mở. Chờ học viên bấm chỉ mất vài giây. Ở #6, AI phải nói trước TA trả lời sớm nhất 08:00, sau hạn nộp, để học viên tự quyết có gửi không. Chỉ báo “đã chuyển” sau khi tool chạy thành công. | **Tự làm:** loại vì AI có thể tự chuyển rồi báo “đã báo TA”, khiến học viên yên tâm ngồi chờ trong khi TA trả lời sau hạn. **Cấm:** loại vì học viên cần đường liên hệ người thật khi AI không giải quyết được. |
 | `dang_FAQ` | **Cần người duyệt** | Ở #9, FAQ sai có thể khiến cả lớp học sai. Gỡ bài không xoá được điều học viên đã đọc. Chờ duyệt khiến FAQ xuất hiện muộn hơn, nhưng không cản học viên nhận hỗ trợ cá nhân. **TA là người bấm đăng**; TA thấy bản nháp, mã mục nguồn và chỗ được đánh dấu. Với câu nghi vấn ở §3.3, TA tự kiểm và sửa trong bản nháp trước khi đăng; nếu chưa chắc thì TA hỏi giảng viên trước khi bấm. Không ai duyệt thì bản nháp tiếp tục chờ, không tự đăng. | **Tự làm:** loại vì một lỗi có thể lan tới cả lớp. **Cấm:** loại vì FAQ đã được kiểm tra vẫn hữu ích cho những học viên khác. |
 
 ### Tool khó xếp nhất: `goi_y_bai_tap`
@@ -140,7 +150,8 @@ Những cách hỏi khác cũng rơi vào trường hợp này và AI xử lý g
 
 1. **Với `goi_y_bai_tap`:** hệ thống kiểm tra trạng thái bài trước mỗi lần gửi. Khi bài còn mở, chỉ mở tối đa hai bước gợi ý; không đưa lời giải cho AI trước khi hết hạn. Sau hạn, hệ thống mới mở phần giải thích đầy đủ như đã mô tả ở §3. Luật này chặn việc học viên ở #6 hỏi “bước tiếp theo” nhiều lần để lấy trọn bài giải.
 2. **Với FAQ:** tách việc **soạn bản nháp** (`soan_FAQ`) khỏi **đăng** (`dang_FAQ`). `soan_FAQ` ở mức **tự làm**: AI tạo bản nháp và đưa vào hàng chờ TA như kịch bản #9. `dang_FAQ` vẫn ở mức **cần người duyệt**: chỉ TA được duyệt và bấm đăng sau khi kiểm tra; nội dung bị đánh dấu ở §3.3 luôn hiện cảnh báo trên màn hình duyệt để TA không bỏ sót. Nếu quá lâu không có người duyệt, bản nháp vẫn chờ và không bao giờ tự đăng.
-3. **Với `chuyen_TA`:** học viên thấy trước nội dung câu hỏi sẽ chuyển và giờ làm việc 08:00–22:00. Ngoài giờ, hệ thống không hứa thời điểm trả lời cụ thể. Việc đưa bản nháp FAQ vào hàng chờ duyệt là luồng riêng, không được nói là đã chuyển câu hỏi cá nhân cho TA.
+3. **Với `chuyen_TA`:** trước khi bấm, học viên thấy nội dung câu hỏi sẽ chuyển và giờ trực 08:00–22:00. Ngoài giờ, AI chỉ nói “TA trả lời **sớm nhất** 08:00 sáng hôm sau”, không hứa giờ chắc chắn. Sau khi gửi, học viên có nút **[Huỷ yêu cầu]** cho tới khi TA mở. Việc đưa bản nháp FAQ vào hàng chờ duyệt là luồng riêng, không được nói là đã chuyển câu hỏi cá nhân cho TA.
+4. **Đánh dấu đoạn tài liệu nghi sai:** khi `tra_cuu_tai_lieu` trả về một đoạn tự mâu thuẫn hoặc sai với một ví dụ kiểm tra được (như câu “luôn nhỏ hơn” ở §3.3), AI tự đánh dấu đoạn đó, mức **tự làm**. Việc này không sửa tài liệu, chỉ thêm ghi chú vào hàng chờ của TA và hiện nhãn “cần xem lại” cho học viên hỏi trúng đoạn đó. Đánh dấu nhầm thì TA bỏ dấu là xong. Bắt chờ duyệt việc đánh dấu là vô nghĩa, vì chính TA là người xem dấu đó.
 
 ### Thử mức đã đặt trên ba kịch bản
 
